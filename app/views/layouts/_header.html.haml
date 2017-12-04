@@ -1,0 +1,9 @@
+%header.navbar.navbar-fixed-top.navbar-inverse
+  %div.container
+    = link_to 'Gallery', '#', id: 'logo'
+    -#= link_to image_tag('logo.jpeg', alt: 'Rails logo'), 'http://rubyonrails.org/'
+    %nav
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'Home', root_path
+        %li= link_to 'Help', help_path
+        %li= link_to 'Log In', '#'
