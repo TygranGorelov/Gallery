@@ -30,6 +30,8 @@ gem 'draper'
 gem 'pundit'
 
 
+
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
@@ -57,5 +59,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rubocop', require: false
   gem 'scss_lint', require: false
+  gem 'letter_opener'
 end
 
