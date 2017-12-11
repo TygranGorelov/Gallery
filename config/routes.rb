@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     resources :pictures, only: %i[create destroy show] do
       post :like, as: 'like'
       resources :comments, only: %i[create destroy]
-      resources :likes, only: %i[create destroy]
+      resources :likes, only: %i[create] do
+        collection do
+          delete :destroy, to: 'likes#destroy'
+        end
+      end
     end
   end
 

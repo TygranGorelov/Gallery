@@ -13,12 +13,18 @@
       = link_to @picture.category.content, category_path(@picture.category)
       &nbsp; &nbsp; &nbsp; &nbsp;
 
-      = link_to "👍 Like #{@picture.likes.count}", category_picture_like_path(@picture.category, @picture), method: :post
+      - if current_user.present? && @picture.liked_by?(current_user)
+        = link_to "👍 Like #{@picture.likes.count}", category_picture_likes_path(@picture.category, @picture), method: :delete, class: 'text-danger'
+      - elsif current_user.present?
+        = link_to "👍 Like #{@picture.likes.count}", category_picture_likes_path(@picture.category, @picture), method: :post, class: 'text-success'
+      - else
+        = "👍 Like #{@picture.likes.count}"
 
-    .panel.panel-info.comments
-      %p Leave comment:
-      .panel-body
-        = render partial: 'comments/form', locals: { comment: @picture.comments.build }
+    - if current_user
+      .panel.panel-info.comments
+        %p Leave comment:
+        .panel-body
+          = render partial: 'comments/form', locals: { comment: @picture.comments.build }
 
     .panel.panel-info.comments
       .panel-heading
@@ -34,9 +40,6 @@
             %br
             = comment.content
             %br
-            -#= comment.created_at, :format => :sample
             %p.date-comment #{comment.created_at}
-            -#- if comment.user_id == current_user.id
-            -#  = link_to 'Delete', category_picture_comment_path(comment.picture.category, comment.picture, comment), class: 'delete_link', date: { confirm: 'You sure?' }, method: :delete
             %hr
 

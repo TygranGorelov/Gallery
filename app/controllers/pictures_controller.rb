@@ -21,17 +21,6 @@ class PicturesController < ApplicationController
     end
   end
 
-  def like
-    @picture = Picture.find(params[:picture_id])
-    curr_like = @picture.likes.find_by(user_id: current_user.id)
-    if curr_like
-      curr_like.destroy
-    else
-      @picture.likes.create(user_id: current_user.id)
-    end
-    redirect_back(fallback_location: @picture)
-  end
-
   private
 
   def picture_params
