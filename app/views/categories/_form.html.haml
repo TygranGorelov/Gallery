@@ -1,0 +1,5 @@
+= form_for(category) do |f|
+  .field
+    = f.hidden_field :user_id
+    = f.text_field :content, placeholder: 'New category'
+    = f.submit 'Create', class: 'btn btn-primary btn-create'

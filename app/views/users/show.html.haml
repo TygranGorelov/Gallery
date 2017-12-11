@@ -1,2 +1,18 @@
 %h1= @user.name
-%h2= @user.email
+
+.container.row
+  .col-md-4
+    .quad
+      %p My categories:
+      %ol.categories
+        = render partial: 'categories/category', collection: @categories, as: :category # типа цикл или map
+
+  - if @user == current_user || current_user.admin?
+    .col-md-4
+      .quad
+        %p Create new category:
+        = render partial: 'categories/form', locals: { category: @user.categories.build }
+
+    .col-md-4.quad
+      %p Download new image:
+      = render partial: 'pictures/form', locals: { picture: @picture }

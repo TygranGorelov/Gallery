@@ -1,0 +1,17 @@
+.row
+  .col-md-6
+    %h1 All Categories
+    - @categories.each do |category|
+      = link_to category.content, category_path(category)
+      - if category.user_id == current_user.id
+        = link_to 'Delete', category_path(category), class: 'delete_link', date: { confirm: 'You sure?' }, method: :delete
+      - else
+        = link_to "By #{category.user.name}", '#', class: 'user-id-link'
+      %br
+
+  .col-md-6
+    %h1 Your Categories
+    - current_user.categories.each do |u_category|
+      = link_to u_category.content, category_path(u_category)
+      = link_to 'Delete', category_path(u_category), class: 'delete_link', date: { confirm: 'You sure?' }, method: :delete
+      %br

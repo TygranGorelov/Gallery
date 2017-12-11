@@ -1,0 +1,6 @@
+= form_for [comment.picture.category, comment.picture, comment] do |f|
+  .field
+    = f.hidden_field :picture_id
+    = current_user.name
+    = f.text_field :content, placeholder: 'Leave comment...'
+    = f.submit 'Comment', class: 'btn btn-primary btn-create'

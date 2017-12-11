@@ -1,0 +1,42 @@
+.panel.panel-info.row
+
+  .panel-heading
+    %h1.borders #{ @picture.title }
+
+  .panel-body.full-image
+    = image_tag @picture.img, class: 'full-picture'
+    %p.comments
+      Author -
+      = link_to @picture.user.name, user_path(@picture.user)
+      &nbsp; &nbsp; &nbsp; &nbsp;
+      Category -
+      = link_to @picture.category.content, category_path(@picture.category)
+      &nbsp; &nbsp; &nbsp; &nbsp;
+
+      = link_to "👍 Like #{@picture.likes.count}", category_picture_like_path(@picture.category, @picture), method: :post
+
+    .panel.panel-info.comments
+      %p Leave comment:
+      .panel-body
+        = render partial: 'comments/form', locals: { comment: @picture.comments.build }
+
+    .panel.panel-info.comments
+      .panel-heading
+        %p Comments:
+      .panel-body
+        - @picture.comments.order('created_at DESC').each do |comment|
+          - if comment.content.present?
+            %i
+              - if comment.user
+                = link_to comment.user.name, user_path(comment.user)
+              - else
+                NoBody
+            %br
+            = comment.content
+            %br
+            -#= comment.created_at, :format => :sample
+            %p.date-comment #{comment.created_at}
+            -#- if comment.user_id == current_user.id
+            -#  = link_to 'Delete', category_picture_comment_path(comment.picture.category, comment.picture, comment), class: 'delete_link', date: { confirm: 'You sure?' }, method: :delete
+            %hr
+

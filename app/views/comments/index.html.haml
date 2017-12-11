@@ -1,0 +1,31 @@
+.row
+  .col-md-6
+    .panel.panel-info.comments
+      .panel-heading
+        %p All Comments for All Pictures:
+      .panel-body
+        - @comments.order('created_at DESC').each do |comment|
+          - if comment.content.present?
+            %i
+              - if comment.user
+                Author comm - #{link_to comment.user.name, user_path(comment.user)}
+                Author pict - #{link_to comment.picture.category.user.name, '#'}
+              - else
+                Author - NoBody
+            %br
+            Picture - #{link_to comment.picture.title, '#' }
+            %br
+            = comment.content
+            %br
+            %p.date-comment #{comment.created_at}
+            -#- if comment.user_id == current_user.id
+            -#  = link_to 'Delete', category_picture_comment_path(comment.picture.category, comment.picture, comment), class: 'delete_link', date: { confirm: 'You sure?' }, method: :delete
+            %hr
+
+  .col-md-6
+    .panel.panel-info.comments
+      .panel-heading
+        %p All Comments for My Pictures:
+      .panel-body
+
+        = render partial: 'pictures/assigned_comments', collection: @user_pictures, as: :picture

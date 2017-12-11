@@ -21,13 +21,20 @@ gem 'uglifier'
 # gem 'therubyracer', platforms: :ruby
 gem 'pg'
 # загрузка файлов Сarrierwave
-gem 'carrierwave'
+gem 'carrierwave',             '0.10.0'
+gem 'mini_magick',             '3.8.0'
+gem 'fog',                     '1.36.0'
 # Аутентификация devise
 gem 'devise'
 # Админ панель ActiveAdmin
 gem 'activeadmin'
 gem 'draper'
 gem 'pundit'
+# Пагинация
+gem 'kaminari'
+# Факер
+gem 'faker'
+
 
 
 

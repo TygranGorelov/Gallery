@@ -1,0 +1,13 @@
+= form_for picture, url: pictures_path, class: 'form' do |f|
+  .form-group
+    = f.text_field :title, placeholder: 'Image name', class: 'form-control'
+
+  .form-group
+    = f.select :category_id, current_user.categories.collect {|p| [ p.content, p.id ] }, {}, class: 'form-control'
+
+  .form-group
+    = f.file_field :img, placeholder: 'Choose image'
+
+  .form-group
+    .col-md-6.col-offset-md-3
+      = f.submit 'Download image', class: 'btn btn-primary'

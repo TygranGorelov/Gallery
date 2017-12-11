@@ -1,0 +1,11 @@
+- picture.comments.order('created_at DESC').map do |comment|
+  Author pic - #{link_to picture.user.name, '#'}
+  Author comm - #{link_to comment.user_id, '#'}
+  %br
+  Picture - #{link_to picture.title, '#'}
+  %br
+  = comment.content
+  %br
+  %p.date-comment #{comment.created_at}
+  %hr
+

@@ -1,0 +1,4 @@
+%h1 Pictures from category #{ @category.content }
+- @pictures.each do |picture|
+  = image_tag picture.img.thumb.url
+
