@@ -26,45 +26,24 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @pictures = @category.pictures
-    
   end
 
   def index
     @categories = Category.all
   end
 
-  # def subscribe
-  #   @user = User.find(params[:id])
-  #   # User.first.following_categories << Category.first
-  #   # @user.following_categories << Category.first
-  # end
-
-  # def subscribe
-  #   current_user.followed_categories << @category
-  # end
 
   def subscribe
-    # @category = Category.find_by(id: params[:id])
     @category = Category.find(params[:category_id])
-  
-    puts '******' * 10
-    puts @category.content
-    puts '******' * 10
-
     current_user.followed_categories << @category
-    # respond_to do |format|
-    #   format.html { redirect_to @category }
-    #   format.json { render :show, status: :created }
-    # end
+    redirect_back(fallback_location: @category)
   end
 
-  # def unsubscribe
-  #   current_user.categories.delete(@category)
-  #   respond_to do |format|
-  #     format.html { redirect_to @category }
-  #     format.json { render :show, status: :created }
-  #   end
-  # end
+  def unsubscribe
+    @category = Category.find(params[:category_id])
+    current_user.followed_categories.delete(@category)
+    redirect_back(fallback_location: @category)
+  end
 
   private
 

@@ -1,5 +1,6 @@
 %li{ id: "category-#{category.id}" }
   %span.content.category_large
     = link_to category.content, category_path(category)
-    = link_to 'Delete', category_path(category), class: 'delete_link', date: { confirm: 'You sure?' }, method: :delete
+    - if category.user_id == current_user.id
+      = link_to 'Delete', category_path(category), class: 'delete_link', date: { confirm: 'You sure?' }, method: :delete
 

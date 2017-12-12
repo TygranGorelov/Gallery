@@ -8,7 +8,10 @@ class User < ApplicationRecord
 
   has_many :likes, dependent: :destroy
 
-  has_and_belongs_to_many :followed_categories, class_name: 'Category', join_table: 'categories_users'
+  # has_and_belongs_to_many :followed_categories, class_name: 'Category', join_table: 'categories_users'
+
+  has_many :subscribes
+  has_many :followed_categories, through: :subscribes, source: :category
 
   validates :name, presence: true
 

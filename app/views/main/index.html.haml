@@ -5,7 +5,11 @@
     %div.welcome
       %h3 Welcome! #{current_user.name}
       %br
-      %p Slider'll be here
+      %p Тут должен быть слайдер из картинок из подписанных категорий
+      %p #{current_user.followed_categories.count} categories
+      %ol
+        = render partial: 'categories/category', collection: current_user.followed_categories, as: :category
+
 - else
   %div.center.jumbotron.text-center
   %h1 Welcome To Gallery

@@ -6,7 +6,7 @@
       - if category.user_id == current_user.id
         = link_to 'Delete', category_path(category), class: 'delete_link', date: { confirm: 'You sure?' }, method: :delete
       - else
-        = link_to "By #{category.user.name}", '#', class: 'user-id-link'
+        = link_to "By #{category.user.name}", user_path(category.user.id), class: 'user-id-link'
 
       %br
 

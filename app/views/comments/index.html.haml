@@ -9,17 +9,15 @@
             %i
               - if comment.user
                 Author comm - #{link_to comment.user.name, user_path(comment.user)}
-                Author pict - #{link_to comment.picture.category.user.name, '#'}
+                Author pict - #{link_to comment.picture.category.user.name, user_path(comment.picture.category.user.id)}
               - else
                 Author - NoBody
             %br
-            Picture - #{link_to comment.picture.title, '#' }
+            Picture - #{link_to comment.picture.title, category_picture_path(comment.picture.category.id, comment.picture.id,) }
             %br
             = comment.content
             %br
             %p.date-comment #{comment.created_at}
-            -#- if comment.user_id == current_user.id
-            -#  = link_to 'Delete', category_picture_comment_path(comment.picture.category, comment.picture, comment), class: 'delete_link', date: { confirm: 'You sure?' }, method: :delete
             %hr
 
   .col-md-6
@@ -27,5 +25,4 @@
       .panel-heading
         %p All Comments for My Pictures:
       .panel-body
-
         = render partial: 'pictures/assigned_comments', collection: @user_pictures, as: :picture

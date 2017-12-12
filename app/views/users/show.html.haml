@@ -12,8 +12,7 @@
       .quad
         %p Subscribed categories:
         %p #{@user.followed_categories.count} categories
-        %p
-          List:
+        %ol
           = render partial: 'categories/category', collection: @user.followed_categories, as: :category
 
     .col-md-3
