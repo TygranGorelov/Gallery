@@ -1,4 +1,10 @@
-%h1 Pictures from category #{ @category.content }
-- @pictures.each do |picture|
-  = image_tag picture.img.thumb.url
+-#%h1 Pictures from category #{ @category.content }
+= render 'categories/subscribe_form'
+
+%hr
+.image-wrap
+  - @pictures.each do |picture|
+    .col-md-4
+      = link_to (image_tag picture.img.thumb.url, class: 'img-responsive'), category_picture_path(picture.category, picture)
+    -#= image_tag picture.img.
 

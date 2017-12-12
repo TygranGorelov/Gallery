@@ -1,0 +1,6 @@
+- if user_signed_in?
+  = link_to 'Subscribe', category_subscribe_path(@category.id), method: 'post'
+%br
+%label_tag{ class: "js-count-followers-label" }
+  Followers:
+  = @category.followers.count

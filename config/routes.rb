@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users
 
   resources :categories, only: %i[create destroy show index] do
+    post :subscribe, to: 'categories#subscribe'
+    delete :subscribe, to: 'categories#unsubscribe'
     resources :pictures, only: %i[create destroy show] do
       post :like, as: 'like'
       resources :comments, only: %i[create destroy]
@@ -23,5 +25,6 @@ Rails.application.routes.draw do
 
   get :comments, to: 'comments#index'
 
+  
 
 end

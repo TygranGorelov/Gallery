@@ -8,9 +8,9 @@ class User < ApplicationRecord
 
   has_many :likes, dependent: :destroy
 
+  has_and_belongs_to_many :followed_categories, class_name: 'Category', join_table: 'categories_users'
 
   validates :name, presence: true
 
   def admin?; end
-
 end

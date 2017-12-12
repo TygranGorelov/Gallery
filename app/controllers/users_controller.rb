@@ -19,8 +19,9 @@ class UsersController < ApplicationController
     @categories = @user.categories.order(:created_at).page(params[:page])
   end
 
+  
   private
 
- 
+
 
 end

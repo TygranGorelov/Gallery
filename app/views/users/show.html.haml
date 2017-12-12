@@ -1,18 +1,26 @@
 %h1= @user.name
 
 .container.row
-  .col-md-4
+  .col-md-3
     .quad
       %p My categories:
       %ol.categories
         = render partial: 'categories/category', collection: @categories, as: :category # типа цикл или map
 
   - if @user == current_user || current_user.admin?
-    .col-md-4
+    .col-md-3
+      .quad
+        %p Subscribed categories:
+        %p #{@user.followed_categories.count} categories
+        %p
+          List:
+          = render partial: 'categories/category', collection: @user.followed_categories, as: :category
+
+    .col-md-3
       .quad
         %p Create new category:
         = render partial: 'categories/form', locals: { category: @user.categories.build }
 
-    .col-md-4.quad
+    .col-md-3.quad
       %p Download new image:
       = render partial: 'pictures/form', locals: { picture: @picture }
