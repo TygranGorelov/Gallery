@@ -27,7 +27,6 @@ class PicturesController < ApplicationController
     params.require(:picture).permit(:title, :img, :category_id)
   end
 
-
 end
 
 

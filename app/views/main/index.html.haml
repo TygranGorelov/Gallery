@@ -10,6 +10,34 @@
       %ol
         = render partial: 'categories/category', collection: current_user.followed_categories, as: :category
 
+      - tt = []
+
+      %p
+        Слайдер картинок из моих категорий
+        %br
+        .carousel.slide{:id=>"slide-images", :data => {:ride => "carousel"}, :data-interval => "false"}
+          .carousel-inner.full-image
+            - current_user.categories.each do |u_category|
+              - tt = tt + [u_category.pictures.ids]
+
+            = tt
+
+
+              -#- u_category.pictures.each_with_index do |pic, index |
+              -#
+              -#  - if index.zero?
+              -#    .item.active
+              -#      %img{:src => "#{ pic.img }", :alt => ""}
+              -#  - else
+              -#    .item
+              -#      %img{:src => "#{ pic.img }", :alt => ""}
+
+            %a.left.carousel-control{:href => "#slide-images", :data => {:slide => "prev"}}
+              %span.glyphicon.glyphicon-chevron-left
+            %a.right.carousel-control{:href => "#slide-images", :data => {:slide => "next"}}
+              %span.glyphicon.glyphicon-chevron-right
+
+
 - else
   %div.center.jumbotron.text-center
   %h1 Welcome To Gallery
